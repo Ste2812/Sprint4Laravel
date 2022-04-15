@@ -17,9 +17,9 @@ use App\Http\Controllers\TeamController;
 |
 */
 
-/*Route::get('/', function () {
+Route::get('/inde', function () {
     return view('welcome');
-});*/
+});
 
 Route::get('/', IndexController::class);
 
@@ -43,4 +43,14 @@ Route::get('game/show', 'show');
 Route::get('game/update', 'update');
 
 Route::get('game/delete', 'destroy');
+});
+
+Route::middleware([
+    'auth:sanctum',
+    config('jetstream.auth_session'),
+    'verified'
+])->group(function () {
+    Route::get('/dashboard', function () {
+        return view('dashboard');
+    })->name('dashboard');
 });

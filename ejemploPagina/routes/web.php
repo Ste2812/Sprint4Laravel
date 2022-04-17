@@ -21,28 +21,32 @@ Route::get('/inde', function () {
     return view('welcome');
 });
 
-Route::get('/', IndexController::class);
+Route::get('/', IndexController::class)->name('index');
 
 Route::controller(TeamController::class)->group(function(){
 
-Route::get('team/register','create');
+Route::get('team/register','create')->name('team.create');
 
-Route::get('team/list', 'show');
+Route::post('team', 'store')->name('team.store');
 
-Route::get('team/update', 'update');
+Route::get('team/{id}/list/', 'show')->name('team.show');
 
-Route::get('team/delete', 'destroy');
+Route::get('team/{team}/edit', 'edit')->name('team.edit');
+
+Route::put('team/{team}/update', 'update')->name('team.update');
+
+Route::get('team/{id}/delete', 'destroy')->name('team.destroy');
 });
 
 Route::controller(GameController::class)->group(function(){
 
-Route::get('game/register', 'create');
+Route::get('game/register', 'create')->name('game.create');
 
-Route::get('game/show', 'show');
+Route::get('game/list{id}', 'show')->name('game.show');
 
-Route::get('game/update', 'update');
+Route::get('game/update', 'update')->name('game.update');
 
-Route::get('game/delete', 'destroy');
+Route::get('game/delete', 'destroy')->name('game.destroy');
 });
 
 Route::middleware([

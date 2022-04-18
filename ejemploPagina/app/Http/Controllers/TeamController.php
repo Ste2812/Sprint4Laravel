@@ -5,6 +5,9 @@ namespace App\Http\Controllers;
 use App\Models\Team;
 use Illuminate\Http\Request;
 
+use App\Http\Requests\StoreTeam;
+use App\Http\Requests\UpdateTeam;
+
 class TeamController extends Controller
 {
     /**
@@ -33,15 +36,8 @@ class TeamController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreTeam $request)
     {
-
-        $request->validate([
-            'nombre'=> 'required',
-            'tipo'=>'required',
-            'num_jugadores'=>'required',
-        ]);
-
 
         $team= new Team();
         $team->nombre= $request->nombre;
@@ -62,10 +58,10 @@ class TeamController extends Controller
      * @param  \App\Models\Team  $team
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Team $team)
     {
-        $teams= Team::find($id);
-        return view('teams.show', compact('teams'));
+
+        return view('teams.show', compact('team'));
     }
 
     /**
@@ -88,8 +84,9 @@ class TeamController extends Controller
      * @param  \App\Models\Team  $team
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Team $team)
+    public function update(UpdateTeam $request, Team $team)
     {
+
         $team->nombre= $request->nombre;
         $team->tipo= $request->tipo;
         $team->num_jugadores= $request->num_jugadores;
@@ -105,9 +102,9 @@ class TeamController extends Controller
      * @param  \App\Models\Team  $team
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Team $team)
     {
-        $teams= Team::find($id);
+        $team->delete();
         return view('teams.destroy', compact('teams'));
     }
 }

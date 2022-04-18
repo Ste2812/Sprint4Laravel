@@ -6,8 +6,21 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <title>@yield('title')</title>
+    <style>
+
+
+        .th, td {
+
+        }
+        .image{
+            background-image: url("{{asset('img/fondoApp.jpg')}}");
+
+
+        }
+    </style>
 </head>
-<body>
+
+<body class="image bg-cover">
     @yield('content')
 </body>
 </html>

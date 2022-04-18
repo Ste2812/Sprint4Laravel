@@ -11,11 +11,11 @@
         <label>
             Nombre:
             <br>
-            <input type="text" name="nombre">
+            <input type="text" name="nombre" value="{{old('nombre')}}">
         </label>
         @error('nombre')
         <br>
-        <small>{{$message}}</small>
+        <small>*{{$message}}</small>
         <br>
         @enderror
 
@@ -24,7 +24,7 @@
             Tipo:
             <br>
             <select name="tipo">
-                <option></option>
+                <option>{{old('tipo')}}</option>
                 <option value="escuela">Escuela</option>
                 <option value="club_deportivo">Club deportivo</option>
                 <option value="otro">Otro</option>
@@ -32,7 +32,7 @@
         </label>
         @error('tipo')
         <br>
-        <small>{{$message}}</small>
+        <small>*{{$message}}</small>
         <br>
         @enderror
 
@@ -40,11 +40,11 @@
         <label>
             Numero jugadores:
             <br>
-            <input type="number" id="num_jugadores" name="num_jugadores">
+            <input type="number" id="num_jugadores" name="num_jugadores" value="{{old('num_jugadores')}}">
         </label>
         @error('num_jugadores')
         <br>
-        <small>{{$message}}</small>
+        <small>*{{$message}}</small>
         <br>
         @enderror
 
@@ -52,7 +52,7 @@
         <label>
             Descripcion:
             <br>
-            <textarea name="descripcion" id="" cols="18" rows="8"></textarea>
+            <textarea name="descripcion" id="" cols="18" rows="8">{{old('descripcion')}}</textarea>
         </label>
 
         <br><br>

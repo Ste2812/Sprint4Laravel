@@ -29,25 +29,36 @@ Route::get('team/register','create')->name('team.create');
 
 Route::post('team', 'store')->name('team.store');
 
-Route::get('team/{id}/list/', 'show')->name('team.show');
+Route::get('team/{team}/list', 'show')->name('team.show');
 
 Route::get('team/{team}/edit', 'edit')->name('team.edit');
 
-Route::put('team/{team}/update', 'update')->name('team.update');
+Route::put('team/{team}', 'update')->name('team.update');
 
-Route::get('team/{id}/delete', 'destroy')->name('team.destroy');
+Route::delete('team/{team}', 'destroy')->name('team.destroy');
 });
 
+/*
 Route::controller(GameController::class)->group(function(){
 
 Route::get('game/register', 'create')->name('game.create');
 
+Route::post('game', 'store')->name('game.store');
+
 Route::get('game/list{id}', 'show')->name('game.show');
 
-Route::get('game/update', 'update')->name('game.update');
+Route::get('game/{game}/edit', 'edit')->name('game.edit');
 
-Route::get('game/delete', 'destroy')->name('game.destroy');
+Route::put('game/{game}', 'update')->name('game.update');
+
+Route::delete('game/{game}', 'destroy')->name('game.destroy');
 });
+*/
+
+Route::resource('partidos', GameController::class)->parameters(['partidos' => 'game'])->names('game'); //con el metodo resource se pueden agrupar en una linea
+                                                //varias rutas, además de asignar automaticamente el nombre de las rutas.
+                                                //Con el metodo parameters mantenemos inmutados las variables de almacenamiento y metodo
+                                                //names mantiene la definición de rutas en controllers y views
 
 Route::middleware([
     'auth:sanctum',

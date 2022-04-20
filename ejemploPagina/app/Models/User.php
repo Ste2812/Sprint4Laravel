@@ -10,6 +10,8 @@ use Laravel\Fortify\TwoFactorAuthenticatable;
 use Laravel\Jetstream\HasProfilePhoto;
 use Laravel\Sanctum\HasApiTokens;
 
+use Illuminate\Database\Eloquent\Casts\Attribute;
+
 class User extends Authenticatable
 {
     use HasApiTokens;
@@ -58,4 +60,15 @@ class User extends Authenticatable
     protected $appends = [
         'profile_photo_url',
     ];
+
+    public function name(): Attribute {//se ha pasado la funcion de protected a public para poder funcionar
+        return new Attribute(
+        get: function($value){
+            return ucwords($value);
+        },
+        set: fn($value)=>strtolower($value)
+
+    );
+
+    }
 }

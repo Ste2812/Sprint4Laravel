@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Game;
+use App\Models\Team;
 use Illuminate\Http\Request;
 
 class IndexController extends Controller
@@ -14,6 +16,11 @@ class IndexController extends Controller
      */
     public function __invoke(Request $request)
     {
-        return view('index');
+
+        $teams= Team::orderBy('id','desc')->paginate();
+
+        $games= Game::orderBy('id', 'desc')->paginate();
+
+        return view('index', compact('teams', 'games'));
     }
 }

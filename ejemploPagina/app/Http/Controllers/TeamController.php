@@ -5,6 +5,9 @@ namespace App\Http\Controllers;
 use App\Models\Team;
 use Illuminate\Http\Request;
 
+use App\Http\Requests\StoreTeam;
+use App\Http\Requests\UpdateTeam;
+
 class TeamController extends Controller
 {
     /**
@@ -33,9 +36,22 @@ class TeamController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreTeam $request)
     {
-        //
+
+        $team= new Team();
+        $team->nombre= $request->nombre;
+        $team->tipo= $request->tipo;
+        $team->num_jugadores= $request->num_jugadores;
+        $team->descripcion= $request->descripcion;
+        $team->slug=null;
+
+
+        $team->save();
+
+        return redirect()->route('index', $team);
+
+
     }
 
     /**
@@ -46,7 +62,8 @@ class TeamController extends Controller
      */
     public function show(Team $team)
     {
-        return view('teams.show');
+
+        return view('teams.show', compact('team'));
     }
 
     /**
@@ -57,7 +74,9 @@ class TeamController extends Controller
      */
     public function edit(Team $team)
     {
-        //
+        //$teams= Team::find($id);
+        return view('teams.edit', compact('team'));
+
     }
 
     /**
@@ -67,9 +86,16 @@ class TeamController extends Controller
      * @param  \App\Models\Team  $team
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Team $team)
+    public function update(UpdateTeam $request, Team $team)
     {
-        return view('teams.update');
+
+        $team->nombre= $request->nombre;
+        $team->tipo= $request->tipo;
+        $team->num_jugadores= $request->num_jugadores;
+        $team->descripcion= $request->descripcion;
+
+        $team->save();
+        return redirect()->route('index', $team);
     }
 
     /**
@@ -80,6 +106,7 @@ class TeamController extends Controller
      */
     public function destroy(Team $team)
     {
-        return view('teams.destroy');
+        $team->delete();
+        return redirect()->route('index');
     }
 }

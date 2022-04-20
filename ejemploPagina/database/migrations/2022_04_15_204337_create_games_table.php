@@ -20,11 +20,11 @@ return new class extends Migration
             $table->timestamps();
             $table->string('lugar');
             $table->bigInteger('id_equipo_A')->unsigned();
-            $table->bigInteger('id_equipo_B')->unsigned();
+            $table->bigInteger('id_equipo_B')->unsigned()->check('id_equipo_A');
             $table->text('comentarios')->nullable();
 
-            $table->foreign('id_equipo_A')->references('id')->on('teams');
-            $table->foreign('id_equipo_B')->references('id')->on('teams');
+            $table->foreign('id_equipo_A')->references('id')->on('teams')->onDelete('cascade')->onUpdate('cascade');
+            $table->foreign('id_equipo_B')->references('id')->on('teams')->onDelete('cascade')->onUpdate('cascade');
         });
     }
 

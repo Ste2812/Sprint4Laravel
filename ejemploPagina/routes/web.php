@@ -25,7 +25,7 @@ Route::get('/', IndexController::class)->name('index');
 
 Route::controller(TeamController::class)->group(function(){
 
-Route::get('team/register','create')->name('team.create');
+Route::get('team/create','create')->name('team.create');
 
 Route::post('team', 'store')->name('team.store');
 

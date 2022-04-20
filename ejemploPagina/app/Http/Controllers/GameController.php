@@ -2,7 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StoreGame;
+use App\Http\Requests\UpdateGame;
 use App\Models\Game;
+use App\Models\Team;
 use Illuminate\Http\Request;
 
 class GameController extends Controller
@@ -24,7 +27,10 @@ class GameController extends Controller
      */
     public function create()
     {
-        return view('games.create');
+
+        $teams= Team::all();
+
+        return view('games.create', compact('teams'));
     }
 
     /**
@@ -33,9 +39,10 @@ class GameController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreGame $request)
     {
         $game= Game::create($request->all());
+        $game->slug= null;
 
         /*$game= Game::create([
 
@@ -51,7 +58,7 @@ class GameController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\game  $game
+     * @param  \App\Models\Game  $game
      * @return \Illuminate\Http\Response
      */
     public function show(Game $game)
@@ -66,9 +73,10 @@ class GameController extends Controller
      * @param  \App\Models\game  $game
      * @return \Illuminate\Http\Response
      */
-    public function edit(game $game)
+    public function edit(Game $game)
     {
-        //
+        return view('games.edit', compact('game'));
+
     }
 
     /**
@@ -78,7 +86,7 @@ class GameController extends Controller
      * @param  \App\Models\game  $game
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Game $game)
+    public function update(UpdateGame $request, Game $game)
     {
         $game->update($request->all());
         //return view('games.update', $game);

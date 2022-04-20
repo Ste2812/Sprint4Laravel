@@ -7,6 +7,8 @@ module.exports = {
         './storage/framework/views/*.php',
         './resources/views/**/*.blade.php',
         "./src/**/*.{html,js}",
+        "./resources/**/*.js",
+        "./resources/**/*.vue",
     ],
 
     theme: {

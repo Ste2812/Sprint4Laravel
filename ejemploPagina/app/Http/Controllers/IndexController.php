@@ -19,7 +19,7 @@ class IndexController extends Controller
 
         $teams= Team::orderBy('id','desc')->paginate();
 
-        $games= Game::paginate();
+        $games= Game::orderBy('id', 'desc')->paginate();
 
         return view('index', compact('teams', 'games'));
     }

@@ -5,9 +5,17 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Casts\Attribute;
+use Cviebrock\EloquentSluggable\Sluggable;
+
+
 
 class Team extends Model
 {
+    use Sluggable;
+    use HasFactory;
+
+    protected $fillable= ['nombre', 'tipo', 'num_jugadores', 'descripcion'];
+
     public function nombre(): Attribute{//se ha pasado la funcion de protected a public para poder funcionar
         return new Attribute(
             get: function($value){
@@ -20,8 +28,20 @@ class Team extends Model
             }
         );
     }
+    public function sluggable(): array {
+        return [
+            'slug' => [
+                'source' => 'nombre'
+            ]
+        ];
+    }
 
-    protected $fillable= ['nombre', 'tipo', 'num_jugadores', 'descripcion'];
+    public function getRouteKeyName()
+    {
+        return 'slug';
 
-    use HasFactory;
+    }
+
+
+
 }

@@ -44,6 +44,8 @@ class TeamController extends Controller
         $team->tipo= $request->tipo;
         $team->num_jugadores= $request->num_jugadores;
         $team->descripcion= $request->descripcion;
+        $team->slug=null;
+
 
         $team->save();
 
@@ -105,6 +107,6 @@ class TeamController extends Controller
     public function destroy(Team $team)
     {
         $team->delete();
-        return view('teams.destroy', compact('teams'));
+        return redirect()->route('index');
     }
 }

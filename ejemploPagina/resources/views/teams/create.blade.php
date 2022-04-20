@@ -3,62 +3,60 @@
 @section('title', 'team register')
 
 @section('content')
-    <h1>pagina de registro equipo</h1>
-    <div class="ml-4">
-    <form action="{{route('team.store')}}" method="POST">
+
+<div class="overflow-y-scroll">
+    <form class="overflow-auto block p-6 rounded-lg shadow-lg bg-white max-w-md" action="{{route('team.store')}}" method="POST">
         @csrf
 
-        <label>
+        <div class="mb-2">
+        <label class="block mb-2 text-sm font-medium text-gray-900">
             Nombre:
-            <br>
-            <input type="text" name="nombre" value="{{old('nombre')}}">
+            <input class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" type="text" name="nombre" value="{{old('nombre')}}">
         </label>
         @error('nombre')
-        <br>
         <small>*{{$message}}</small>
-        <br>
         @enderror
+        </div>
 
-        <br>
-        <label>
+        <div class="mb-2">
+        <label class="block mb-2 text-sm font-medium text-gray-900 ">
             Tipo:
-            <br>
-            <select name="tipo">
-                <option>{{old('tipo')}}</option>
+            <select class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" name="tipo">
+                <option></option>
                 <option value="escuela">Escuela</option>
                 <option value="club_deportivo">Club deportivo</option>
                 <option value="otro">Otro</option>
             </select>
         </label>
         @error('tipo')
-        <br>
         <small>*{{$message}}</small>
-        <br>
         @enderror
+        </div>
 
-        <br>
-        <label>
+        <div class="mb-2">
+        <label class="block mb-2 text-sm font-medium text-gray-900 ">
             Numero jugadores:
             <br>
-            <input type="number" id="num_jugadores" name="num_jugadores" value="{{old('num_jugadores')}}">
+            <input class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" type="number" id="num_jugadores" name="num_jugadores" value="{{old('num_jugadores')}}">
         </label>
         @error('num_jugadores')
-        <br>
         <small>*{{$message}}</small>
-        <br>
         @enderror
+        </div>
 
-        <br>
+        <div class="mb-2">
         <label>
             Descripcion:
-            <br>
-            <textarea name="descripcion" id="" cols="18" rows="8">{{old('descripcion')}}</textarea>
-        </label>
 
-        <br><br>
+            <textarea class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" type="text" name="nombre" name="descripcion" id="" cols="10" rows="5">{{old('descripcion')}}</textarea>
+        </label>
+        </div>
+
         <button class="h-8 px-4 text-center text-l bg-green-500 hover:bg-green-700 text-white font-bold rounded" type="submit">Registar</button>
 
     </form>
 </div>
 
+
 @endsection
+

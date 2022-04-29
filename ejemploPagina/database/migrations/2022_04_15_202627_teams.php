@@ -16,10 +16,11 @@ return new class extends Migration
         Schema::create('teams', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('nombre');
+            $table->string('slug');
             $table->enum('tipo',['club_deportivo', 'escuela', 'otro']);
             $table->integer('num_jugadores');
             $table->timestamps();//dos columnas para registrar fecha de creación y fecha de actualizacíon
-            $table->text('descripción')->nullable();
+            $table->text('descripcion')->nullable();
 
 
         });

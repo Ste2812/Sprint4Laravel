@@ -15,6 +15,7 @@ return new class extends Migration
     {
         Schema::create('games', function (Blueprint $table) {
             $table->id();
+            $table->string('slug');
             $table->dateTime('fecha');
             $table->timestamps();
             $table->string('lugar');

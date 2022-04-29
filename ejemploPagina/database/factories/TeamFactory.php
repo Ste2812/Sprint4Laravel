@@ -22,11 +22,13 @@ class TeamFactory extends Factory
     protected $model = Team::class;
     public function definition()
     {
+        $name=$this->faker->sentence();
         return [
             'nombre'=>$this->faker->streetName(),
+            'slug'=>Str::slug($name, '_'),
             'tipo'=>$this->faker->randomElement(['club_deportivo','escuela','otro']),
             'num_jugadores'=>$this->faker->numberBetween(8, 10),
-            'descripción'=>$this->faker->paragraph()
+            'descripcion'=>$this->faker->paragraph()
         ];
     }
 }
